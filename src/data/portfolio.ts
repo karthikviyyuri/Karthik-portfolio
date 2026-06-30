@@ -5,7 +5,7 @@ export const profile = {
   timezone: "Asia/Kolkata",
   email: "karthikviyyuri@gmail.com",
   phone: "+91 9701992085",
-  linkedin: "https://www.linkedin.com/in/karthik",
+  linkedin: "https://www.linkedin.com/in/",
   github: "https://github.com/karthikviyyuri",
   kaggle: "",
   role: "AI/ML Engineer",
