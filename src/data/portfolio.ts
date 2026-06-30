@@ -6,7 +6,7 @@ export const profile = {
   email: "karthikviyyuri@gmail.com",
   phone: "+91 9701992085",
   linkedin: "https://www.linkedin.com/in/karthik",
-  github: "https://github.com/karthik",
+  github: "https://github.com/karthikviyyuri",
   kaggle: "",
   role: "AI/ML Engineer",
   roleDetail: "B.Tech CSE (AI-ML) - BV Raju Institute of Technology",
