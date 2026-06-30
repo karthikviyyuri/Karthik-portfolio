@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Exchange Online">
+  <rect x="8" y="14" width="48" height="36" rx="8" fill="none" stroke="#d4a853" stroke-width="4"/>
+  <path d="m12 21 20 16 20-16" fill="none" stroke="#d4a853" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  <path d="M20 44h24" stroke="#d4a853" stroke-linecap="round" stroke-width="3" opacity=".5"/>
+</svg>

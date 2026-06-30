@@ -1,0 +1,28 @@
+---
+interface Props {
+  class?: string;
+  delay?: number;
+  variant?: "up" | "left" | "right" | "scale";
+}
+
+const {
+  class: className = "",
+  delay = 0,
+  variant = "up"
+} = Astro.props;
+---
+
+<div
+  class:list={["reveal", `reveal--${variant}`, className]}
+  data-reveal
+  style={`--reveal-delay:${delay}ms`}
+>
+  <slot />
+</div>
+
+<script>
+  import { initRevealOnScroll } from "../../lib/utils/intersection";
+
+  document.addEventListener("astro:page-load", () => initRevealOnScroll());
+  initRevealOnScroll();
+</script>

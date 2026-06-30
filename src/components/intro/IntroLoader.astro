@@ -1,0 +1,50 @@
+---
+import AlienAbductionScene from "./AlienAbductionScene.astro";
+---
+
+<div class="intro-scroll-stage" id="intro-scroll-stage">
+  <section class="intro-loader" id="portfolio-intro" role="status" aria-live="polite" aria-label="Portfolio intro">
+    <div class="intro-loader__stars" aria-hidden="true"></div>
+    <div class="intro-space-field" aria-hidden="true">
+      <AlienAbductionScene />
+    </div>
+    <div class="intro-loader__scene" aria-hidden="true">
+      <svg class="intro-loader__terrain" viewBox="0 0 1200 520" preserveAspectRatio="none">
+        <path class="intro-loader__horizon" d="M150 220 Q600 90 1050 220" />
+        <g class="intro-loader__grid">
+          <path d="M120 470 L470 230" />
+          <path d="M300 500 L530 225" />
+          <path d="M480 520 L580 220" />
+          <path d="M720 520 L620 220" />
+          <path d="M900 500 L670 225" />
+          <path d="M1080 470 L730 230" />
+          <path d="M100 455 Q600 372 1100 455" />
+          <path d="M170 408 Q600 344 1030 408" />
+          <path d="M250 362 Q600 317 950 362" />
+          <path d="M345 318 Q600 292 855 318" />
+          <path d="M450 276 Q600 266 750 276" />
+        </g>
+        <g class="intro-loader__terrain-points">
+          <circle cx="242" cy="407" r="3" />
+          <circle cx="438" cy="318" r="2.5" />
+          <circle cx="603" cy="265" r="3" />
+          <circle cx="762" cy="318" r="2.5" />
+          <circle cx="956" cy="407" r="3" />
+        </g>
+      </svg>
+    </div>
+    <div class="intro-loader__panel mono" data-intro-copy>
+      <span class="intro-loader__kicker">SYSTEM BOOT</span>
+      <strong class="intro-loader__welcome" id="intro-welcome">WELCOME</strong>
+      <span class="intro-loader__line">LOADING FIELD / <span id="intro-progress">000</span></span>
+      <span class="intro-loader__enter">SCROLL TO INITIATE</span>
+    </div>
+  </section>
+</div>
+
+<script>
+  import { initAlienAbductionIntro } from "../../lib/intro/alienAbduction";
+
+  document.addEventListener("astro:page-load", initAlienAbductionIntro);
+  initAlienAbductionIntro();
+</script>

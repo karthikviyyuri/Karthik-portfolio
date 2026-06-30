@@ -1,0 +1,18 @@
+---
+import StackGrid from "../components/sections/StackGrid.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { profile } from "../data/portfolio";
+
+export const prerender = true;
+---
+
+<BaseLayout title={`Stack - ${profile.name}`} description="Karthik Viyyuri's AI/ML, testing, cloud, and frontend tool stack.">
+  <header class="section-shell page-header">
+    <p class="section-kicker">Stack</p>
+    <h1 class="section-title">What I run, test, and study.</h1>
+    <p class="section-copy">Profiled from the source resume: AI/ML tooling, regression automation, Microsoft 365 migration tools, and practical development environments.</p>
+  </header>
+  <section class="section-shell section-shell--tight">
+    <StackGrid />
+  </section>
+</BaseLayout>

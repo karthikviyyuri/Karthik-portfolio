@@ -1,0 +1,62 @@
+---
+import { Code2Icon, MailIcon, MapPinIcon, NetworkIcon, PhoneIcon } from "lucide-react";
+import ContactSection from "../components/sections/ContactSection";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { profile } from "../data/portfolio";
+
+export const prerender = true;
+---
+
+<BaseLayout title={`Contact - ${profile.name}`} description="Contact Karthik Viyyuri for AI/ML, automation, and applied engineering work.">
+  <header class="section-shell page-header">
+    <p class="section-kicker">Contact</p>
+    <h1 class="section-title">Hard problems welcome.</h1>
+    <p class="section-copy">Best fits: AI/ML project work, automation-heavy validation, cloud migration support, and research-aligned prototypes.</p>
+  </header>
+  <section class="section-shell section-shell--tight contact-page">
+    <div class="contact-page__links">
+      <a class="panel" href={`mailto:${profile.email}`}><MailIcon size={18} aria-hidden="true" /> {profile.email}</a>
+      <a class="panel" href={`tel:${profile.phone.replace(/\s/g, "")}`}><PhoneIcon size={18} aria-hidden="true" /> {profile.phone}</a>
+      <a class="panel" href={profile.github} target="_blank" rel="noopener noreferrer"><Code2Icon size={18} aria-hidden="true" /> GitHub</a>
+      <a class="panel" href={profile.linkedin} target="_blank" rel="noopener noreferrer"><NetworkIcon size={18} aria-hidden="true" /> LinkedIn</a>
+      <span class="panel"><MapPinIcon size={18} aria-hidden="true" /> India</span>
+    </div>
+    <ContactSection client:load />
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-page {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: minmax(0, 0.8fr) minmax(20rem, 1.2fr);
+  }
+
+  .contact-page__links {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+  }
+
+  .contact-page__links a,
+  .contact-page__links span {
+    align-items: center;
+    color: var(--text-secondary);
+    display: flex;
+    gap: 0.65rem;
+    min-height: 3.25rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .contact-page__links a:hover,
+  .contact-page__links a:focus-visible {
+    border-color: rgba(212, 168, 83, 0.45);
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 840px) {
+    .contact-page {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,18 @@
+---
+import ImpactMetrics from "../components/sections/ImpactMetrics";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { metrics, profile } from "../data/portfolio";
+
+export const prerender = true;
+---
+
+<BaseLayout title={`Impact - ${profile.name}`} description="Traceable metrics from Karthik Viyyuri's resume and project work.">
+  <header class="section-shell page-header">
+    <p class="section-kicker">Impact</p>
+    <h1 class="section-title">Proof, not promises.</h1>
+    <p class="section-copy">Every number here is tied to the provided resume, not projected from a template.</p>
+  </header>
+  <section class="section-shell section-shell--tight">
+    <ImpactMetrics metrics={metrics} client:load />
+  </section>
+</BaseLayout>

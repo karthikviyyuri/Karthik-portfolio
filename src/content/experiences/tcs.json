@@ -1,0 +1,15 @@
+{
+  "title": "Project Intern",
+  "organization": "Tata Consultancy Services (TCS)",
+  "dateRange": "July 2025 - Sept 2025",
+  "type": "work",
+  "sortOrder": 202509,
+  "summary": "Supported a 3-month Microsoft 365 tenant transformation project across user, mailbox, cleanup, and validation workflows.",
+  "highlights": [
+    "Assisted migration workflows using Microsoft Entra ID and Exchange Online.",
+    "Automated recurring cleanup and validation tasks with PowerShell scripts.",
+    "Reduced manual post-migration effort by approximately 30% and improved cloud migration workflow efficiency."
+  ],
+  "tags": ["Microsoft 365", "Microsoft Entra ID", "Exchange Online", "PowerShell", "Cloud migration"]
+}
+

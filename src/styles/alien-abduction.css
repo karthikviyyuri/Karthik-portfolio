@@ -1,0 +1,106 @@
+:root {
+  --intro-ufo-body: rgba(12, 12, 12, 0.92);
+  --intro-ufo-rim: rgba(212, 168, 83, 0.58);
+  --intro-ufo-glow: rgba(212, 168, 83, 0.22);
+  --intro-beam: rgba(212, 168, 83, 0.16);
+  --intro-beam-core: rgba(240, 237, 230, 0.22);
+}
+
+.intro-space-field {
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.abduction-ufo {
+  filter: drop-shadow(0 0 28px rgba(212, 168, 83, 0.14));
+  left: 50%;
+  opacity: 0.78;
+  pointer-events: none;
+  position: absolute;
+  top: 4%;
+  transform: translate3d(-50%, -50%, 0) rotate(var(--ufo-rotation, 0deg)) scale(var(--ufo-scale, 1));
+  transform-origin: 50% 50%;
+  width: min(76vw, 1080px);
+  will-change: transform, filter, opacity;
+  z-index: 2;
+}
+
+.abduction-ufo__svg {
+  display: block;
+  overflow: visible;
+  width: 100%;
+}
+
+.abduction-ufo__glow {
+  fill: rgba(212, 168, 83, 0.05);
+}
+
+.abduction-ufo__main {
+  fill: var(--intro-ufo-body);
+  stroke: rgba(212, 168, 83, 0.45);
+  stroke-width: 1.2;
+}
+
+.abduction-ufo__dome,
+.abduction-ufo__rim {
+  fill: none;
+  stroke: rgba(212, 168, 83, 0.35);
+  stroke-width: 1.1;
+}
+
+.abduction-ufo__lights circle {
+  fill: rgba(212, 168, 83, 0.85);
+  filter: drop-shadow(0 0 6px rgba(212, 168, 83, 0.45));
+}
+
+.abduction-beam {
+  filter: blur(0.2px) drop-shadow(0 0 20px rgba(212, 168, 83, 0.15));
+  height: 72vh;
+  left: 50%;
+  opacity: var(--beam-opacity, 0);
+  pointer-events: none;
+  position: absolute;
+  top: 12%;
+  transform: translateX(-50%) scaleX(var(--beam-scale, 1));
+  transform-origin: 50% 0;
+  width: min(36vw, 520px);
+  will-change: opacity, transform;
+  z-index: 3;
+}
+
+.abduction-beam svg {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.abduction-beam__outer {
+  fill: rgba(212, 168, 83, 0.08);
+}
+
+.abduction-beam__core {
+  fill: rgba(240, 237, 230, 0.08);
+}
+
+@media (max-width: 768px) {
+  .abduction-ufo {
+    top: 5%;
+    width: 150vw;
+  }
+
+  .abduction-beam {
+    width: 58vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .abduction-ufo,
+  .abduction-beam,
+  .intro-loader__scene {
+    animation: none;
+    transition: none;
+  }
+}

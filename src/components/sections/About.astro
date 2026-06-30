@@ -1,0 +1,130 @@
+---
+import { aboutParagraphs, beliefs, negativeSpace } from "../../data/portfolio";
+import MetricCard from "../ui/MetricCard.astro";
+import RevealOnScroll from "../ui/RevealOnScroll.astro";
+---
+
+<section class="about-section" id="about" data-ufo-section="about" aria-labelledby="about-title">
+  <div class="section-shell">
+    <RevealOnScroll>
+      <p class="section-kicker">About</p>
+      <h2 class="section-title" id="about-title">Inference is easy. Everything around it decides whether the work survives.</h2>
+    </RevealOnScroll>
+    <div class="about-section__grid">
+      <div class="about-section__copy">
+        {aboutParagraphs.map((paragraph, index) => (
+          <RevealOnScroll delay={index * 90}>
+            <p>{paragraph}</p>
+          </RevealOnScroll>
+        ))}
+      </div>
+      <aside class="about-section__aside" aria-label="Principles and constraints">
+        <RevealOnScroll variant="right" delay={120}>
+          <div class="panel about-section__negative">
+            <h3>What this site will not do</h3>
+            <ul>
+              {negativeSpace.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll variant="right" delay={220}>
+          <MetricCard value="WECON 2025" label="Published research" context="Cache-Augmented Multimodal Sentiment Analysis using Embeddings." href="/work/wecon-2025-publication" />
+        </RevealOnScroll>
+      </aside>
+    </div>
+    <div class="about-section__beliefs">
+      {beliefs.map((belief, index) => (
+        <RevealOnScroll variant="scale" delay={index * 90}>
+          <article class="panel about-section__belief">
+            <h3>{belief.title}</h3>
+            <p>{belief.body}</p>
+          </article>
+        </RevealOnScroll>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .about-section__grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: minmax(0, 1.35fr) minmax(17rem, 0.65fr);
+    margin-top: 2.5rem;
+  }
+
+  .about-section__copy {
+    color: var(--text-secondary);
+    display: grid;
+    font-size: 1.03rem;
+    gap: 1rem;
+  }
+
+  .about-section__copy p {
+    margin: 0;
+  }
+
+  .about-section__aside {
+    align-self: start;
+    display: grid;
+    gap: 1rem;
+    position: sticky;
+    top: 8rem;
+  }
+
+  .about-section__negative {
+    padding: 1rem;
+  }
+
+  .about-section__negative h3,
+  .about-section__belief h3 {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    margin: 0 0 0.75rem;
+  }
+
+  .about-section__negative ul {
+    color: var(--text-secondary);
+    display: grid;
+    gap: 0.6rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .about-section__negative li {
+    border-left: 1px solid var(--accent-critical);
+    padding-left: 0.75rem;
+  }
+
+  .about-section__beliefs {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 2rem;
+  }
+
+  .about-section__belief {
+    padding: 1rem;
+  }
+
+  .about-section__belief p {
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .about-section__grid,
+    .about-section__beliefs {
+      grid-template-columns: 1fr;
+    }
+
+    .about-section__aside {
+      position: static;
+    }
+  }
+</style>

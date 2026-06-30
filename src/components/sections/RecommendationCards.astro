@@ -1,0 +1,72 @@
+---
+const cards = [
+  {
+    title: "Recommendations not fabricated",
+    context: "Source policy",
+    body:
+      "The provided resume does not include direct recommendation quotes, so this page does not invent names or testimonials."
+  },
+  {
+    title: "Reference-ready delivery evidence",
+    context: "TCS and PalTech",
+    body:
+      "The strongest reference signals available are project outcomes: approximately 30% lower post-migration manual effort and 200+ UI regression cases automated."
+  },
+  {
+    title: "Research verification",
+    context: "WECON 2025",
+    body:
+      "The paper Cache-Augmented Multimodal Sentiment Analysis using Embeddings is linked publicly through IEEE Xplore."
+  }
+];
+---
+
+<section class="recommendation-cards">
+  <div class="recommendation-cards__grid">
+    {cards.map((card) => (
+      <article class="panel recommendation-card">
+        <p>{card.context}</p>
+        <h3>{card.title}</h3>
+        <div>{card.body}</div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .recommendation-cards__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .recommendation-card {
+    padding: 1.1rem;
+  }
+
+  .recommendation-card p {
+    color: var(--accent-primary);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    margin: 0 0 0.7rem;
+  }
+
+  .recommendation-card h3 {
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    margin: 0 0 0.9rem;
+  }
+
+  .recommendation-card div {
+    border-left: 1px solid var(--border-strong);
+    color: var(--text-secondary);
+    padding-left: 0.9rem;
+  }
+
+  @media (max-width: 880px) {
+    .recommendation-cards__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+

@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { profile } from "../data/portfolio";
+
+export const prerender = true;
+---
+
+<BaseLayout title={`Articles - ${profile.name}`} description="Writing and publication links for Karthik Viyyuri.">
+  <header class="section-shell page-header">
+    <p class="section-kicker">Articles</p>
+    <h1 class="section-title">Research writing and publication trail.</h1>
+    <p class="section-copy">The provided source material includes one published research paper.</p>
+  </header>
+  <section class="section-shell section-shell--tight">
+    <article class="panel article-card">
+      <p>WECON 2025 / IEEE Xplore</p>
+      <h2>Cache-Augmented Multimodal Sentiment Analysis using Embeddings</h2>
+      <span>Presented and published at the WECON 2025 Conference, backed by the IEEE Delhi Section.</span>
+      <a class="button" href="https://ieeexplore.ieee.org/document/11414590" target="_blank" rel="noopener noreferrer">Open paper</a>
+    </article>
+  </section>
+</BaseLayout>
+
+<style>
+  .article-card {
+    display: grid;
+    gap: 0.9rem;
+    max-width: 760px;
+    padding: 1.2rem;
+  }
+
+  .article-card p {
+    color: var(--accent-primary);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    margin: 0;
+  }
+
+  .article-card h2 {
+    color: var(--text-primary);
+    font-size: 1.35rem;
+    margin: 0;
+  }
+
+  .article-card span {
+    color: var(--text-secondary);
+  }
+</style>

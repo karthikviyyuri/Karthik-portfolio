@@ -1,0 +1,88 @@
+---
+import Clock from "./Clock.astro";
+import MouseCoords from "./MouseCoords.astro";
+import ScrollArc from "./ScrollArc.astro";
+import StatusBar from "./StatusBar.astro";
+import { profile } from "../../data/portfolio";
+---
+
+<div class="hud" transition:persist>
+  <Clock />
+  <StatusBar />
+  <ScrollArc />
+  <MouseCoords />
+</div>
+
+<script is:inline define:vars={{ city: profile.hudCity, timezone: profile.timezone }}>
+  function bootHud() {
+    const clock = document.getElementById("hud-clock");
+    const progress = document.getElementById("hud-scroll-progress");
+    const scrollText = document.getElementById("hud-scroll-text");
+    const mouseX = document.getElementById("hud-mouse-x");
+    const mouseY = document.getElementById("hud-mouse-y");
+    const circumference = 113.1;
+    let ticking = false;
+    let clockTimer = 0;
+
+    function updateClock() {
+      if (!clock) return;
+      const now = new Date().toLocaleTimeString("en-IN", {
+        timeZone: timezone,
+        hour12: false,
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      });
+      clock.textContent = `${city} / ${now}`;
+    }
+
+    function updateScroll() {
+      const scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const ratio = Math.min(1, Math.max(0, window.scrollY / scrollable));
+      const percent = Math.round(ratio * 100);
+      if (progress) {
+        progress.setAttribute("stroke-dashoffset", String(circumference - circumference * ratio));
+        progress.setAttribute("stroke", ratio > 0.75 ? "var(--accent-secondary)" : "var(--hud-color)");
+      }
+      if (scrollText) {
+        scrollText.textContent = String(percent);
+      }
+    }
+
+    function scheduleScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateScroll();
+        ticking = false;
+      });
+    }
+
+    function updateMouse(event) {
+      if (mouseX) {
+        mouseX.textContent = `X[${(event.clientX / Math.max(1, window.innerWidth)).toFixed(4)}]`;
+      }
+      if (mouseY) {
+        mouseY.textContent = `Y[${(event.clientY / Math.max(1, window.innerHeight)).toFixed(4)}]`;
+      }
+    }
+
+    updateClock();
+    updateScroll();
+    window.clearInterval(window.__karthikHudClock);
+    clockTimer = window.setInterval(updateClock, 1000);
+    window.__karthikHudClock = clockTimer;
+
+    window.removeEventListener("scroll", window.__karthikHudScroll);
+    window.removeEventListener("resize", window.__karthikHudScroll);
+    window.removeEventListener("mousemove", window.__karthikHudMouse);
+    window.__karthikHudScroll = scheduleScroll;
+    window.__karthikHudMouse = updateMouse;
+    window.addEventListener("scroll", scheduleScroll, { passive: true });
+    window.addEventListener("resize", scheduleScroll, { passive: true });
+    window.addEventListener("mousemove", updateMouse, { passive: true });
+  }
+
+  document.addEventListener("astro:page-load", bootHud);
+  bootHud();
+</script>

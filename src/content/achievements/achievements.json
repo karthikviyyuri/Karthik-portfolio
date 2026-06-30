@@ -1,0 +1,47 @@
+{
+  "items": [
+    {
+      "title": "WECON 2025 publication",
+      "organization": "IEEE Delhi Section-backed WECON 2025 Conference",
+      "date": "2025",
+      "description": "Presented and published the paper Cache-Augmented Multimodal Sentiment Analysis using Embeddings.",
+      "metric": "1 published paper"
+    },
+    {
+      "title": "Microsoft 365 migration automation",
+      "organization": "Tata Consultancy Services (TCS)",
+      "date": "2025",
+      "description": "Automated cleanup and validation tasks during a tenant transformation internship.",
+      "metric": "30% lower manual post-migration effort"
+    },
+    {
+      "title": "UI regression automation",
+      "organization": "PalTech",
+      "date": "Internship",
+      "description": "Built JavaScript and Playwright regression coverage using the Page Object Model and CI/CD execution.",
+      "metric": "200+ cases, 25% lower repetitive manual testing"
+    },
+    {
+      "title": "B.Tech academic record",
+      "organization": "BV Raju Institute of Technology",
+      "date": "2022 - 2026",
+      "description": "CSE (AI-ML) degree with coursework in deep learning, NLP, data structures, DBMS, and computer vision.",
+      "metric": "8.1 / 10 GPA"
+    },
+    {
+      "title": "Intermediate academic record",
+      "organization": "Excellencia Junior College",
+      "date": "2020 - 2022",
+      "description": "MPC program before the AI-ML undergraduate track.",
+      "metric": "94.9%"
+    },
+    {
+      "title": "Media and SAE E-Baja leadership",
+      "organization": "BVRIT",
+      "date": "2024 - 2025",
+      "description": "Served as Videography and Editing Lead for Media Club and Media Coordinator for SAE E-Baja.",
+      "metric": "2 leadership roles"
+    }
+  ]
+}
+

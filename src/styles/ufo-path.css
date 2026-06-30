@@ -1,0 +1,101 @@
+.ufo-scroll-system {
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  transition: opacity 600ms ease;
+  z-index: 1;
+}
+
+.intro-complete .ufo-scroll-system,
+.ufo-scroll-system.is-ready {
+  opacity: 1;
+}
+
+.ufo-path-svg {
+  height: 100%;
+  inset: 0;
+  overflow: visible;
+  position: fixed;
+  width: 100%;
+}
+
+.ufo-path-track,
+.ufo-path-progress {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1;
+}
+
+.ufo-path-track {
+  stroke: rgba(212, 168, 83, 0.08);
+}
+
+.ufo-path-progress {
+  filter: drop-shadow(0 0 7px rgba(212, 168, 83, 0.28));
+  stroke: rgba(212, 168, 83, 0.64);
+}
+
+.ufo-scroll-system__ship {
+  filter: drop-shadow(0 0 11px rgba(212, 168, 83, 0.38));
+  height: auto;
+  position: fixed;
+  width: 34px;
+  will-change: transform;
+  z-index: 3;
+}
+
+.ufo-scroll-system__ship svg {
+  display: block;
+  overflow: visible;
+  width: 100%;
+}
+
+.ufo-glow {
+  fill: rgba(212, 168, 83, 0.14);
+}
+
+.ufo-beam {
+  fill: rgba(212, 168, 83, 0.08);
+}
+
+.ufo-dome {
+  fill: rgba(240, 237, 230, 0.08);
+  stroke: rgba(212, 168, 83, 0.46);
+  stroke-width: 1.2;
+}
+
+.ufo-body {
+  fill: rgba(212, 168, 83, 0.22);
+  stroke: rgba(212, 168, 83, 0.86);
+  stroke-width: 2;
+}
+
+.ufo-rim {
+  fill: none;
+  stroke: rgba(240, 237, 230, 0.48);
+  stroke-width: 1;
+}
+
+.ufo-light {
+  fill: rgba(212, 168, 83, 0.95);
+}
+
+@media (max-width: 760px) {
+  .ufo-path-track,
+  .ufo-path-progress {
+    stroke-width: 0.9;
+  }
+
+  .ufo-scroll-system__ship {
+    filter: drop-shadow(0 0 9px rgba(212, 168, 83, 0.32));
+    width: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ufo-scroll-system {
+    display: none;
+  }
+}

@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import ExperienceTimeline, { type TimelineItem } from "../components/sections/ExperienceTimeline";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { profile } from "../data/portfolio";
+
+export const prerender = true;
+
+const entries = (await getCollection("experiences")).sort((a, b) => b.data.sortOrder - a.data.sortOrder);
+const items: TimelineItem[] = entries.map((entry) => ({
+  id: entry.id,
+  title: entry.data.title,
+  organization: entry.data.organization,
+  dateRange: entry.data.dateRange,
+  type: entry.data.type,
+  summary: entry.data.summary,
+  highlights: entry.data.highlights,
+  tags: entry.data.tags
+}));
+---
+
+<BaseLayout title={`Experience - ${profile.name}`} description="Karthik Viyyuri's internship, education, and leadership timeline.">
+  <header class="section-shell page-header">
+    <p class="section-kicker">Experience</p>
+    <h1 class="section-title">A timeline of work, study, and validation habits.</h1>
+    <p class="section-copy">Open each node for the specific outcomes and tools listed in the source resume.</p>
+  </header>
+  <section class="section-shell section-shell--tight">
+    <ExperienceTimeline items={items} client:load />
+  </section>
+</BaseLayout>

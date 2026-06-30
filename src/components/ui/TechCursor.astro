@@ -1,0 +1,116 @@
+---
+---
+
+<div class="tech-cursor" aria-hidden="true">
+  <div class="tech-cursor__glow"></div>
+  <div class="tech-cursor__ring"></div>
+  <div class="tech-cursor__dot"></div>
+  <div class="tech-cursor__axis tech-cursor__axis--x"></div>
+  <div class="tech-cursor__axis tech-cursor__axis--y"></div>
+  <div class="tech-cursor__readout mono">XY</div>
+</div>
+
+<script>
+  function bootTechCursor(): void {
+    const cursor = document.querySelector<HTMLElement>(".tech-cursor");
+    if (!cursor || window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
+
+    if (cursor.dataset.booted === "true") {
+      return;
+    }
+
+    cursor.dataset.booted = "true";
+    document.documentElement.classList.add("has-tech-cursor");
+
+    const ring = cursor.querySelector<HTMLElement>(".tech-cursor__ring");
+    const dot = cursor.querySelector<HTMLElement>(".tech-cursor__dot");
+    const glow = cursor.querySelector<HTMLElement>(".tech-cursor__glow");
+    const readout = cursor.querySelector<HTMLElement>(".tech-cursor__readout");
+    if (!ring || !dot || !glow || !readout) return;
+
+    const cursorEl = cursor;
+    const ringEl = ring;
+    const dotEl = dot;
+    const glowEl = glow;
+    const readoutEl = readout;
+
+    const state = {
+      active: false,
+      down: false,
+      mouseX: window.innerWidth / 2,
+      mouseY: window.innerHeight / 2,
+      glowX: window.innerWidth / 2,
+      glowY: window.innerHeight / 2,
+      ringX: window.innerWidth / 2,
+      ringY: window.innerHeight / 2,
+      moveTimer: 0,
+      rafId: 0
+    };
+
+    function classify(target: EventTarget | null): void {
+      if (!(target instanceof Element)) return;
+      const interactive = target.closest("a, button, summary, [role='button'], input, textarea, select");
+      const textInput = target.closest("input, textarea, [contenteditable='true']");
+      const avatar = target.closest("#constellation-face");
+
+      cursorEl.classList.toggle("is-link", Boolean(interactive));
+      cursorEl.classList.toggle("is-text", Boolean(textInput));
+      cursorEl.classList.toggle("is-canvas", Boolean(avatar));
+      readoutEl.textContent = avatar ? "ROT" : interactive ? "ACT" : "XY";
+    }
+
+    function render(): void {
+      state.moveTimer = Math.max(0, state.moveTimer - 1);
+      state.ringX += (state.mouseX - state.ringX) * 0.2;
+      state.ringY += (state.mouseY - state.ringY) * 0.2;
+      state.glowX += (state.mouseX - state.glowX) * 0.12;
+      state.glowY += (state.mouseY - state.glowY) * 0.12;
+      dotEl.style.transform = `translate3d(${state.mouseX}px, ${state.mouseY}px, 0) translate(-50%, -50%)`;
+      ringEl.style.transform = `translate3d(${state.ringX}px, ${state.ringY}px, 0) translate(-50%, -50%)`;
+      glowEl.style.transform = `translate3d(${state.glowX}px, ${state.glowY}px, 0) translate(-50%, -50%)`;
+      cursorEl.style.setProperty("--cursor-x", `${state.mouseX}px`);
+      cursorEl.style.setProperty("--cursor-y", `${state.mouseY}px`);
+      cursorEl.classList.toggle("is-moving", state.moveTimer > 0);
+      readoutEl.style.transform = `translate3d(${state.mouseX + 14}px, ${state.mouseY + 14}px, 0)`;
+      state.rafId = window.requestAnimationFrame(render);
+    }
+
+    window.addEventListener("pointermove", (event) => {
+      state.active = true;
+      state.mouseX = event.clientX;
+      state.mouseY = event.clientY;
+      state.moveTimer = 10;
+      cursorEl.classList.add("is-visible");
+      classify(event.target);
+    }, { passive: true });
+
+    window.addEventListener("pointerdown", () => {
+      state.down = true;
+      cursorEl.classList.add("is-down");
+    }, { passive: true });
+
+    window.addEventListener("pointerup", () => {
+      state.down = false;
+      cursorEl.classList.remove("is-down");
+    }, { passive: true });
+
+    document.addEventListener("mouseleave", () => {
+      cursorEl.classList.remove("is-visible");
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        window.cancelAnimationFrame(state.rafId);
+        return;
+      }
+      state.rafId = window.requestAnimationFrame(render);
+    });
+
+    state.rafId = window.requestAnimationFrame(render);
+  }
+
+  document.addEventListener("astro:page-load", bootTechCursor);
+  bootTechCursor();
+</script>

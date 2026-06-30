@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "../ui/ProjectCard.astro";
+import RevealOnScroll from "../ui/RevealOnScroll.astro";
+
+const projects = (await getCollection("projects")).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const featured = projects.filter((project) => project.data.featured);
+---
+
+<section class="featured-projects" data-ufo-section="work" aria-labelledby="featured-projects-title">
+  <div class="section-shell">
+    <RevealOnScroll>
+      <p class="section-kicker">Work</p>
+      <h2 class="section-title" id="featured-projects-title">Proof-bearing projects, not decorative case studies.</h2>
+      <p class="section-copy">Each card traces back to source material from the resume: internship delivery, automation, cloud migration, and the WECON 2025 publication.</p>
+    </RevealOnScroll>
+    <div class="featured-projects__grid">
+      {featured.map((project, index) => (
+        <RevealOnScroll variant="scale" delay={index * 100}>
+          <ProjectCard project={project} />
+        </RevealOnScroll>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-projects__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 820px) {
+    .featured-projects__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

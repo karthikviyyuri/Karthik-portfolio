@@ -1,0 +1,18 @@
+---
+import RecommendationCards from "../components/sections/RecommendationCards.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { profile } from "../data/portfolio";
+
+export const prerender = true;
+---
+
+<BaseLayout title={`Recommendations - ${profile.name}`} description="Recommendation policy and source-backed proof points for Karthik Viyyuri.">
+  <header class="section-shell page-header">
+    <p class="section-kicker">Recommendations</p>
+    <h1 class="section-title">No invented praise. Only sourced signals.</h1>
+    <p class="section-copy">Direct testimonial quotes were not included in the provided resume, so this page documents the verified reference posture instead.</p>
+  </header>
+  <section class="section-shell section-shell--tight">
+    <RecommendationCards />
+  </section>
+</BaseLayout>

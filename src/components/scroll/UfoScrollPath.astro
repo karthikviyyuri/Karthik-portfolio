@@ -1,0 +1,106 @@
+---
+---
+
+<div class="ufo-scroll-system" id="ufo-scroll-system" aria-hidden="true" transition:persist>
+  <svg class="ufo-path-svg" id="ufo-path-svg">
+    <path class="ufo-path-track" id="ufo-path-track"></path>
+    <path class="ufo-path-progress" id="ufo-path-progress"></path>
+  </svg>
+  <div class="ufo-scroll-system__ship" id="ufo-ship">
+    <svg viewBox="0 0 120 64" focusable="false">
+      <ellipse class="ufo-glow" cx="60" cy="38" rx="48" ry="16" />
+      <path class="ufo-beam" d="M44 43 L76 43 L88 64 L32 64Z" />
+      <path class="ufo-dome" d="M39 31 Q60 9 81 31" />
+      <path class="ufo-body" d="M18 34 Q60 13 102 34 Q84 49 60 51 Q36 49 18 34Z" />
+      <ellipse class="ufo-rim" cx="60" cy="36" rx="44" ry="10" />
+      <circle class="ufo-light" cx="42" cy="36" r="2.6" />
+      <circle class="ufo-light" cx="60" cy="38" r="2.6" />
+      <circle class="ufo-light" cx="78" cy="36" r="2.6" />
+    </svg>
+  </div>
+</div>
+
+<script>
+  import { buildUfoPath, getScrollProgress, pathToD, positionAtProgress } from "../../lib/scroll/ufoPath";
+
+  function bootUfoPath(): void {
+    const system = document.getElementById("ufo-scroll-system");
+    const svg = document.getElementById("ufo-path-svg");
+    const track = document.getElementById("ufo-path-track");
+    const progress = document.getElementById("ufo-path-progress");
+    const ship = document.getElementById("ufo-ship");
+    if (!(system instanceof HTMLElement) || !(svg instanceof SVGSVGElement) || !(track instanceof SVGPathElement) || !(progress instanceof SVGPathElement) || !(ship instanceof HTMLElement)) {
+      return;
+    }
+
+    const systemEl = system;
+    const svgEl = svg;
+    const trackEl = track;
+    const progressEl = progress;
+    const shipEl = ship;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      systemEl.classList.add("is-reduced");
+      document.documentElement.classList.add("intro-complete");
+      return;
+    }
+
+    let points = buildUfoPath(window.innerWidth, window.innerHeight, document.querySelectorAll("[data-ufo-section]").length);
+    let totalLength = 1;
+    let ticking = false;
+
+    function rebuild(): void {
+      const sectionCount = document.querySelectorAll("[data-ufo-section]").length;
+      points = buildUfoPath(window.innerWidth, window.innerHeight, sectionCount);
+      svgEl.setAttribute("viewBox", `0 0 ${window.innerWidth} ${window.innerHeight}`);
+      const d = pathToD(points);
+      trackEl.setAttribute("d", d);
+      progressEl.setAttribute("d", d);
+      totalLength = progressEl.getTotalLength() || 1;
+      progressEl.style.strokeDasharray = `${totalLength}`;
+      update();
+    }
+
+    function update(): void {
+      const ratio = getScrollProgress();
+      const position = positionAtProgress(points, ratio);
+      const tilt = Math.max(-18, Math.min(18, position.angle * 0.16));
+      progressEl.style.strokeDashoffset = `${totalLength - totalLength * ratio}`;
+      shipEl.style.transform = `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%) rotate(${tilt}deg)`;
+    }
+
+    function scheduleUpdate(): void {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    }
+
+    function reveal(): void {
+      systemEl.classList.add("is-ready");
+      update();
+    }
+
+    if (window.__karthikUfoScroll) {
+      window.removeEventListener("scroll", window.__karthikUfoScroll);
+    }
+    if (window.__karthikUfoResize) {
+      window.removeEventListener("resize", window.__karthikUfoResize);
+    }
+    window.__karthikUfoScroll = scheduleUpdate;
+    window.__karthikUfoResize = rebuild;
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", rebuild, { passive: true });
+    window.addEventListener("intro:complete", reveal, { once: true });
+
+    rebuild();
+    if (document.documentElement.classList.contains("intro-complete") || window.sessionStorage.getItem("portfolioIntroSeen") === "true") {
+      reveal();
+    }
+  }
+
+  document.addEventListener("astro:page-load", bootUfoPath);
+  bootUfoPath();
+</script>

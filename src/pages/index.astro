@@ -1,0 +1,34 @@
+---
+import About from "../components/sections/About.astro";
+import AchievementsTicker from "../components/sections/AchievementsTicker.astro";
+import FeaturedProjects from "../components/sections/FeaturedProjects.astro";
+import Hero from "../components/sections/Hero.astro";
+import StackGrid from "../components/sections/StackGrid.astro";
+import RevealOnScroll from "../components/ui/RevealOnScroll.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+export const prerender = true;
+---
+
+<BaseLayout>
+  <Hero />
+  <About />
+  <AchievementsTicker />
+  <FeaturedProjects />
+  <section class="section-shell section-shell--tight" data-ufo-section="stack" aria-labelledby="home-stack-title">
+    <RevealOnScroll>
+      <p class="section-kicker">Stack</p>
+      <h2 class="section-title" id="home-stack-title">Tools used where the resume shows work.</h2>
+      <p class="section-copy">A compact view of the production, testing, cloud, and AI/ML tools behind Karthik's projects and internships.</p>
+    </RevealOnScroll>
+    <div class="home-stack">
+      <StackGrid />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .home-stack {
+    margin-top: 2rem;
+  }
+</style>

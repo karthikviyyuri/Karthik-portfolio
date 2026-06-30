@@ -1,0 +1,15 @@
+{
+  "title": "Intern",
+  "organization": "PalTech",
+  "dateRange": "Internship",
+  "type": "work",
+  "sortOrder": 202408,
+  "summary": "Translated business requirements into functional delivery work and strengthened validation through automated UI regression coverage.",
+  "highlights": [
+    "Supported smoother delivery across development and testing phases by translating requirements into functional solutions.",
+    "Developed and automated 200+ UI regression test cases using JavaScript, Playwright, and the Page Object Model framework.",
+    "Integrated automated test execution into CI/CD pipelines, reducing repetitive manual testing effort by approximately 25%."
+  ],
+  "tags": ["JavaScript", "Playwright", "Page Object Model", "CI/CD", "Regression testing"]
+}
+

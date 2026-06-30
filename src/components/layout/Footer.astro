@@ -1,0 +1,45 @@
+---
+import { profile } from "../../data/portfolio";
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p>Karthik Viyyuri - AI/ML Engineer</p>
+    <a href={`mailto:${profile.email}`}>{profile.email}</a>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border-subtle);
+    position: relative;
+    z-index: 2;
+  }
+
+  .site-footer__inner {
+    align-items: center;
+    color: var(--text-muted);
+    display: flex;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1120px;
+    min-height: 5rem;
+    padding: 0 1rem;
+  }
+
+  .site-footer a {
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 640px) {
+    .site-footer__inner {
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.25rem;
+    }
+  }
+</style>
+

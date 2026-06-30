@@ -1,0 +1,118 @@
+.alien-ragdoll-layer {
+  contain: layout style paint;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  user-select: none;
+  z-index: 1;
+}
+
+.alien-ragdoll {
+  filter: drop-shadow(0 0 8px rgba(212, 168, 83, 0.2));
+  height: auto;
+  opacity: 0;
+  position: absolute;
+  transform: translate3d(0, 0, 0) rotate(0deg);
+  width: var(--alien-size, 42px);
+  will-change: transform, opacity;
+}
+
+.alien-ragdoll__svg {
+  height: auto;
+  overflow: visible;
+  width: 100%;
+}
+
+.alien-ragdoll__head,
+.alien-ragdoll__torso {
+  fill: rgba(212, 168, 83, 0.08);
+  stroke: rgba(212, 168, 83, 0.68);
+  stroke-width: 1.5;
+}
+
+.alien-ragdoll__antenna,
+.alien-ragdoll__arm path,
+.alien-ragdoll__leg path {
+  fill: none;
+  stroke: rgba(212, 168, 83, 0.58);
+  stroke-linecap: round;
+  stroke-width: 1.4;
+}
+
+.alien-ragdoll__arm circle,
+.alien-ragdoll__leg circle {
+  fill: rgba(212, 168, 83, 0.18);
+  stroke: rgba(212, 168, 83, 0.56);
+  stroke-width: 1;
+}
+
+.alien-ragdoll__eye {
+  fill: rgba(240, 237, 230, 0.82);
+}
+
+.alien-ragdoll__arm--left {
+  animation: alien-limb-left 1.8s ease-in-out infinite alternate;
+  animation-delay: var(--alien-phase, 0s);
+  transform-box: fill-box;
+  transform-origin: 31px 55px;
+}
+
+.alien-ragdoll__arm--right {
+  animation: alien-limb-right 1.9s ease-in-out infinite alternate;
+  animation-delay: calc(var(--alien-phase, 0s) * -0.7);
+  transform-box: fill-box;
+  transform-origin: 49px 55px;
+}
+
+.alien-ragdoll__leg--left {
+  animation: alien-leg-left 2.1s ease-in-out infinite alternate;
+  animation-delay: calc(var(--alien-phase, 0s) * -0.4);
+  transform-box: fill-box;
+  transform-origin: 35px 78px;
+}
+
+.alien-ragdoll__leg--right {
+  animation: alien-leg-right 2s ease-in-out infinite alternate;
+  animation-delay: calc(var(--alien-phase, 0s) * -0.9);
+  transform-box: fill-box;
+  transform-origin: 45px 78px;
+}
+
+@keyframes alien-limb-left {
+  from { transform: rotate(-8deg); }
+  to { transform: rotate(10deg); }
+}
+
+@keyframes alien-limb-right {
+  from { transform: rotate(8deg); }
+  to { transform: rotate(-10deg); }
+}
+
+@keyframes alien-leg-left {
+  from { transform: rotate(6deg); }
+  to { transform: rotate(-8deg); }
+}
+
+@keyframes alien-leg-right {
+  from { transform: rotate(-6deg); }
+  to { transform: rotate(8deg); }
+}
+
+@media (max-width: 760px) {
+  .alien-ragdoll {
+    filter: drop-shadow(0 0 6px rgba(212, 168, 83, 0.14));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alien-ragdoll-layer {
+    display: none;
+  }
+
+  .alien-ragdoll,
+  .alien-ragdoll * {
+    animation: none;
+    transition: none;
+  }
+}

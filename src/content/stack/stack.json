@@ -1,0 +1,48 @@
+{
+  "categories": [
+    {
+      "name": "Core AI/ML",
+      "context": "Modeling and applied ML foundations from coursework, research, and project work.",
+      "items": [
+        { "name": "Python", "note": "Primary language for AI/ML work.", "logo": "/logos/stack/python.svg" },
+        { "name": "TensorFlow", "note": "Deep learning toolkit from resume skill set.", "logo": "/logos/stack/tensorflow.svg" },
+        { "name": "PyTorch", "note": "Deep learning toolkit from resume skill set.", "logo": "/logos/stack/pytorch.svg" },
+        { "name": "Scikit-learn", "note": "Classical ML and evaluation workflows.", "logo": "/logos/stack/scikit-learn.svg" }
+      ]
+    },
+    {
+      "name": "Testing and Delivery",
+      "context": "Automation, validation, and release workflow skills from internship delivery.",
+      "items": [
+        { "name": "Playwright", "note": "Used to automate 200+ regression test cases.", "logo": "/logos/stack/playwright.svg" },
+        { "name": "Page Object Model", "note": "Improved test maintainability at PalTech.", "logo": "/logos/stack/page-object-model.svg" },
+        { "name": "CI/CD", "note": "Integrated automated test execution with Jenkins-style pipelines.", "logo": "/logos/stack/jenkins.svg" }
+      ]
+    },
+    {
+      "name": "Cloud and Productivity Systems",
+      "context": "Cloud migration and Microsoft 365 tenant transformation exposure.",
+      "items": [
+        { "name": "Microsoft Entra ID", "note": "Used in user migration workflow support.", "logo": "/logos/stack/azure.svg" },
+        { "name": "Exchange Online", "note": "Used in mailbox migration workflow support.", "logo": "/logos/stack/exchange-online.svg" },
+        { "name": "PowerShell", "note": "Automated cleanup and validation tasks.", "logo": "/logos/stack/powershell.svg" },
+        { "name": "SQL", "note": "Database coursework and certification context.", "logo": "/logos/stack/sql.svg" }
+      ]
+    },
+    {
+      "name": "Frontend and Tools",
+      "context": "Practical tooling used for prototypes, validation, and UI work.",
+      "items": [
+        { "name": "JavaScript", "note": "Used for UI regression automation.", "logo": "/logos/stack/javascript.svg" },
+        { "name": "HTML/CSS", "note": "Frontend fundamentals from resume skill set.", "logo": "/logos/stack/html-css.svg" },
+        { "name": "Streamlit", "note": "Used in the multimodal sentiment project.", "logo": "/logos/stack/streamlit.svg" },
+        { "name": "Jupyter Notebook", "note": "Experimentation and analysis.", "logo": "/logos/stack/jupyter.svg" },
+        { "name": "VS Code", "note": "Development environment.", "logo": "/logos/stack/vscode.svg" },
+        { "name": "Cursor IDE", "note": "AI-native coding environment for fast iteration.", "logo": "/logos/stack/cursor.svg" },
+        { "name": "Git", "note": "Version control and collaboration.", "logo": "/logos/stack/git.svg" },
+        { "name": "C", "note": "Programming fundamentals.", "logo": "/logos/stack/c.svg" },
+        { "name": "Java", "note": "Programming fundamentals.", "logo": "/logos/stack/java.svg" }
+      ]
+    }
+  ]
+}

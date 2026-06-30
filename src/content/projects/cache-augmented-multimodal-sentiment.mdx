@@ -1,0 +1,33 @@
+---
+title: "Cache-Augmented Multimodal Sentiment Analysis"
+category: "Research / Applied AI"
+timeframe: "2025"
+summary: "A multimodal sentiment analysis system combining text, audio, and facial-expression inputs with cache-augmented embeddings."
+featured: true
+technologies:
+  - Python
+  - Deep Learning
+  - Sentiment Analysis
+  - BERT
+  - CLIP
+  - Streamlit
+metrics:
+  - label: "Modalities"
+    value: "3"
+  - label: "Publication"
+    value: "WECON 2025"
+  - label: "Paper"
+    value: "IEEE Xplore"
+sections:
+  - label: "Context"
+    body: "Sentiment detection often loses signal when it only looks at a single channel. The project combines text, audio, and facial-expression inputs so the system can reason across complementary signals."
+  - label: "Approach"
+    body: "The system uses embedding models including BERT and CLIP, then adds a cache-augmented retrieval path to reduce repeated computation during sentiment prediction."
+  - label: "Outcome"
+    body: "The work became a published and presented WECON 2025 paper backed by the IEEE Delhi Section."
+---
+
+The system treats sentiment as a multimodal inference problem. Instead of forcing text, audio, and visual expression into separate demos, the project brings them into one Streamlit interface and uses embeddings to make repeated prediction work more efficient.
+
+The publication is available at [IEEE Xplore](https://ieeexplore.ieee.org/document/11414590).
+

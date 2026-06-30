@@ -1,0 +1,163 @@
+---
+import { getEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { aboutParagraphs, beliefs, certifications, negativeSpace, profile } from "../data/portfolio";
+
+export const prerender = true;
+
+const achievements = await getEntry("achievements", "achievements");
+const items = achievements?.data.items ?? [];
+---
+
+<BaseLayout title={`About - ${profile.name}`} description="About Karthik Viyyuri, AI/ML engineer and CSE (AI-ML) student.">
+  <header class="section-shell page-header">
+    <p class="section-kicker">About</p>
+    <h1 class="section-title">A builder shaped by AI research, migration workflows, and validation work.</h1>
+    <p class="section-copy">{profile.shortBio}</p>
+  </header>
+
+  <section class="section-shell section-shell--tight">
+    <div class="about-page__grid">
+      <div class="prose-block">
+        {aboutParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+      <aside class="panel about-page__aside">
+        <h2>What I do not do</h2>
+        <ul>
+          {negativeSpace.map((item) => <li>{item}</li>)}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section-shell section-shell--tight">
+    <p class="section-kicker">Beliefs</p>
+    <div class="about-page__beliefs">
+      {beliefs.map((belief) => (
+        <article class="panel about-page__belief">
+          <h2>{belief.title}</h2>
+          <p>{belief.body}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-shell section-shell--tight" id="achievements">
+    <p class="section-kicker">Achievements</p>
+    <h2 class="section-title">Traceable signals from the resume.</h2>
+    <div class="about-page__achievements">
+      {items.map((item) => (
+        <article class="panel about-page__achievement">
+          <div>
+            <h3>{item.title}</h3>
+            <p>{item.organization} / {item.date}</p>
+          </div>
+          {item.metric && <strong>{item.metric}</strong>}
+          <span>{item.description}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-shell section-shell--tight" id="education">
+    <p class="section-kicker">Certifications</p>
+    <div class="about-page__certs">
+      {certifications.map((certification) => <span>{certification}</span>)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-page__grid,
+  .about-page__beliefs {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+  }
+
+  .about-page__aside,
+  .about-page__belief {
+    padding: 1.1rem;
+  }
+
+  .about-page__aside h2,
+  .about-page__belief h2 {
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin: 0 0 0.8rem;
+  }
+
+  .about-page__aside ul {
+    color: var(--text-secondary);
+    display: grid;
+    gap: 0.65rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .about-page__aside li {
+    border-left: 1px solid var(--accent-critical);
+    padding-left: 0.75rem;
+  }
+
+  .about-page__belief p {
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .about-page__achievements {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .about-page__achievement {
+    align-items: start;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr) 14rem minmax(0, 1.2fr);
+    padding: 1rem;
+  }
+
+  .about-page__achievement h3 {
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin: 0 0 0.25rem;
+  }
+
+  .about-page__achievement p,
+  .about-page__achievement span {
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .about-page__achievement strong {
+    color: var(--accent-primary);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+  }
+
+  .about-page__certs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .about-page__certs span {
+    border: 1px solid var(--border-default);
+    border-radius: 999px;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  @media (max-width: 860px) {
+    .about-page__grid,
+    .about-page__beliefs,
+    .about-page__achievement {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
